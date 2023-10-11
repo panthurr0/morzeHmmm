@@ -60,48 +60,43 @@ def get_word():
     return random.choice(words)
 
 def morze_encode(right_answer):
-     """
-     переводим слово в морзе
-     """
+    """
+    переводим слово в морзе
+    """
 
-     morze_word = ''
-     for i in right_answer:
-    #  if i in morze_alphabet:
-            morze_word += morze_alphabet[i]
-        #   else:
-        #        morze_word += " "
-     return morze_word
+    morze_word = ''
+    for i in right_answer:
+        morze_word += morze_alphabet[i] + ' '
+    return morze_word
 
 def main():
-     """
-     общаемся с пользователем
-     """
+    """
+    общаемся с пользователем
+    """
 
-     user_enter = input('''Сегодня мы потренируемся расшифровывать азбуку Морзе
-Нажмите Enter и начнем ''')
-     if user_enter == "":
-            count = 0
+    user_enter = input('''Сегодня мы потренируемся расшифровывать азбуку Морзе
+    Нажмите Enter и начнем ''')
+    if user_enter == "":
             for i in range(1, 6):
-                    right_answer = get_word()
-                    count += 1
-                    user_input = input(f"\nСлово {count} - {morze_encode(right_answer)} ")
-                    if user_input.lower() == right_answer:
-                        print(f'\nВерно, {right_answer}!')
-                        answers.append(True)
-                    else:
-                        print(f'\nНеверно, {right_answer}!')
-                        answers.append(False)
+                right_answer = get_word()
+                user_input = input(f"\nСлово {i} - {morze_encode(right_answer)} ")
+                if user_input.lower() == right_answer:
+                    print(f'\nВерно, {right_answer}!')
+                    answers.append(True)
+                else:
+                    print(f'\nНеверно, {right_answer}!')
+                    answers.append(False)
             print_statistics(answers)
-     else:
-          print("Кажется, вы не хотите играть. Очень жаль.")
+    else:
+        print("Кажется, вы не хотите играть. Очень жаль.")
 
 def print_statistics(answers):
-     """
-     выводим статистику вопросов и верных ответов
-     """
-     print(f'\nВсего задачек: {len(answers)}')
-     print(f'Отвечено верно: {sum(answers)}')
-     print(f'Отвечено неверно: {len(answers) - sum(answers)}')
+    """
+    выводим статистику вопросов и верных ответов
+    """
+    print(f'\nВсего задачек: {len(answers)}')
+    print(f'Отвечено верно: {sum(answers)}')
+    print(f'Отвечено неверно: {len(answers) - sum(answers)}')
 
 
 
